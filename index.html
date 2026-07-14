@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="UCMS Dienstleistungen: knackige Landingpage für mehr Sichtbarkeit, Content und messbare Anfragen." />
+  <title>UCMS Dienstleistungen | Mehr Sichtbarkeit. Mehr Vertrauen. Mehr Anfragen.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #050607;
+      --panel: rgba(15, 18, 20, .78);
+      --panel-strong: rgba(16, 18, 21, .94);
+      --text: #f8fafc;
+      --muted: #aab3bd;
+      --brand: #ff7a18;
+      --brand-2: #ffb000;
+      --line: rgba(255, 255, 255, .12);
+      --shadow: 0 24px 80px rgba(0, 0, 0, .42);
+      --radius: 28px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 18% 18%, rgba(255, 122, 24, .22), transparent 30%),
+        radial-gradient(circle at 78% 8%, rgba(255, 176, 0, .12), transparent 28%),
+        linear-gradient(135deg, #050607 0%, #090d10 45%, #030303 100%);
+      color: var(--text);
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .34;
+      background-image:
+        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: linear-gradient(to bottom, #000 0%, transparent 74%);
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .wrap { width: min(1160px, calc(100% - 40px)); margin: 0 auto; }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(18px);
+      background: rgba(5, 6, 7, .68);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-inner {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .logo { display: flex; align-items: center; gap: 12px; font-weight: 900; letter-spacing: -.04em; }
+    .logo-mark {
+      width: 42px; height: 42px; border-radius: 14px;
+      display: grid; place-items: center;
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      color: #111; box-shadow: 0 12px 34px rgba(255, 122, 24, .35);
+    }
+
+    .nav-links { display: flex; align-items: center; gap: 22px; color: var(--muted); font-weight: 700; font-size: .94rem; }
+    .nav-links a:hover { color: var(--text); }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      min-height: 52px; padding: 0 22px; border-radius: 999px;
+      font-weight: 900; border: 1px solid transparent; cursor: pointer;
+      transition: transform .2s ease, border-color .2s ease, background .2s ease;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: linear-gradient(135deg, var(--brand), var(--brand-2)); color: #121212; box-shadow: 0 18px 46px rgba(255, 122, 24, .34); }
+    .btn-secondary { border-color: var(--line); background: rgba(255,255,255,.05); color: var(--text); }
+
+    .hero { padding: 92px 0 72px; position: relative; }
+    .hero-grid { display: grid; grid-template-columns: 1.02fr .98fr; gap: 54px; align-items: center; }
+
+    .eyebrow {
+      width: fit-content; display: inline-flex; align-items: center; gap: 10px;
+      padding: 8px 13px; border: 1px solid rgba(255, 122, 24, .32);
+      border-radius: 999px; color: #ffd3ad; background: rgba(255, 122, 24, .09);
+      font-weight: 800; font-size: .86rem;
+    }
+    .pulse { width: 9px; height: 9px; border-radius: 50%; background: var(--brand-2); box-shadow: 0 0 0 7px rgba(255, 176, 0, .13); }
+
+    h1 { margin: 22px 0 18px; font-size: clamp(3rem, 7vw, 6.8rem); line-height: .88; letter-spacing: -.08em; }
+    .gradient { background: linear-gradient(135deg, #fff 0%, #ffd0a8 42%, var(--brand) 100%); -webkit-background-clip: text; color: transparent; }
+    .hero p { max-width: 630px; color: var(--muted); font-size: clamp(1.08rem, 2vw, 1.28rem); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin: 34px 0 28px; }
+
+    .proof { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 34px; }
+    .proof-card { padding: 18px; border: 1px solid var(--line); border-radius: 20px; background: rgba(255,255,255,.045); }
+    .proof-card strong { display: block; font-size: 1.55rem; }
+    .proof-card span { color: var(--muted); font-weight: 700; font-size: .88rem; }
+
+    .visual { position: relative; min-height: 640px; }
+    .mosaic {
+      position: absolute; inset: 0; display: grid; grid-template-columns: repeat(5, 1fr); grid-template-rows: repeat(2, 1fr);
+      gap: 3px; padding: 3px; border-radius: var(--radius); overflow: hidden;
+      border: 1px solid rgba(255,255,255,.16); background: rgba(255,255,255,.16); box-shadow: var(--shadow);
+      transform: perspective(1000px) rotateY(-8deg) rotateX(3deg);
+    }
+    .tile { position: relative; overflow: hidden; background: #0b0f12; min-height: 210px; }
+    .tile::before { content: ""; position: absolute; inset: 0; background: var(--tile); filter: saturate(1.1) contrast(1.1); }
+    .tile::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent, rgba(0,0,0,.58)); }
+    .t1 { --tile: radial-gradient(circle at 50% 42%, #ff8a25 0 7%, #111 8% 12%, #d47a43 13% 19%, #050607 21%); }
+    .t2 { --tile: linear-gradient(100deg, transparent 35%, #ff7a18 36% 38%, transparent 41%), linear-gradient(82deg, transparent 30%, #ffb000 33% 35%, transparent 38%), radial-gradient(circle at 50% 70%, #ff7a18, #071016 36%, #020304 70%); }
+    .t3 { --tile: linear-gradient(90deg, rgba(255,255,255,.18) 0 1%, transparent 1% 36%, rgba(255,255,255,.18) 36% 37%, transparent 37% 100%), radial-gradient(circle at 82% 37%, #ffb000, #ff7a18 11%, #0b1013 34%, #030405 70%); grid-column: span 1; }
+    .t4 { --tile: radial-gradient(circle at 48% 46%, #111 0 18%, #1d2428 19% 25%, #ff7a18 26% 28%, #050607 31% 100%); }
+    .t5 { --tile: radial-gradient(circle at 48% 45%, #bf7042, transparent 18%), linear-gradient(115deg, #080b0d 0 54%, #1b2024 55% 100%); }
+    .t6 { --tile: linear-gradient(0deg, #050607, transparent), repeating-linear-gradient(90deg, rgba(255,255,255,.12) 0 1px, transparent 1px 45px), repeating-linear-gradient(0deg, rgba(255,255,255,.12) 0 1px, transparent 1px 35px), #11171a; }
+    .t7 { --tile: radial-gradient(circle at 50% 50%, #ff7a18 0 2px, transparent 3px), #050607; background-size: 34px 34px; }
+    .t8 { --tile: linear-gradient(0deg, rgba(0,0,0,.3), transparent), repeating-linear-gradient(0deg, #00d084 0 5px, transparent 5px 28px), repeating-linear-gradient(90deg, #ff7a18 0 4px, transparent 4px 78px), #10151a; }
+    .t9 { --tile: radial-gradient(ellipse at 52% 44%, #050607 0 28%, #ff7a18 30% 33%, #12171b 35% 100%); }
+    .t10 { --tile: radial-gradient(circle at 62% 32%, #ffb000, #ff7a18 12%, #17100a 30%, #050607 60%); }
+
+    .floating-card {
+      position: absolute; left: -26px; bottom: 58px; max-width: 330px;
+      padding: 22px; border-radius: 24px; border: 1px solid rgba(255,255,255,.16);
+      background: var(--panel-strong); box-shadow: var(--shadow);
+    }
+    .floating-card strong { font-size: 2.2rem; letter-spacing: -.05em; color: var(--brand-2); }
+    .floating-card p { margin: 6px 0 0; font-size: .98rem; }
+
+    section { padding: 76px 0; }
+    .section-head { max-width: 760px; margin-bottom: 34px; }
+    h2 { margin: 0 0 14px; font-size: clamp(2.1rem, 4vw, 4rem); line-height: .98; letter-spacing: -.06em; }
+    .section-head p { color: var(--muted); font-size: 1.12rem; }
+
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .card { padding: 28px; border-radius: 26px; border: 1px solid var(--line); background: var(--panel); box-shadow: 0 14px 50px rgba(0,0,0,.18); }
+    .icon { width: 54px; height: 54px; display: grid; place-items: center; border-radius: 18px; background: rgba(255,122,24,.14); color: var(--brand-2); font-size: 1.45rem; margin-bottom: 18px; }
+    h3 { margin: 0 0 10px; font-size: 1.35rem; }
+    .card p, .step p { color: var(--muted); margin: 0; }
+
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; counter-reset: step; }
+    .step { padding: 28px; border-radius: 26px; background: rgba(255,255,255,.05); border: 1px solid var(--line); position: relative; }
+    .step::before { counter-increment: step; content: "0" counter(step); display: inline-flex; margin-bottom: 42px; color: var(--brand-2); font-weight: 900; font-size: 1.05rem; }
+
+    .cta { padding: 42px; border-radius: 34px; border: 1px solid rgba(255,122,24,.28); background: linear-gradient(135deg, rgba(255,122,24,.2), rgba(255,176,0,.07)), var(--panel); display: grid; grid-template-columns: 1fr auto; gap: 28px; align-items: center; }
+    .cta h2 { margin-bottom: 8px; }
+    .cta p { color: var(--muted); margin: 0; }
+
+    footer { padding: 34px 0 48px; color: var(--muted); border-top: 1px solid var(--line); }
+    .footer-inner { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hero { padding-top: 58px; }
+      .hero-grid, .cta { grid-template-columns: 1fr; }
+      .visual { min-height: 520px; }
+      .mosaic { transform: none; }
+      .cards, .steps, .proof { grid-template-columns: 1fr; }
+      .floating-card { left: 18px; right: 18px; bottom: 18px; }
+    }
+
+    @media (max-width: 560px) {
+      .wrap { width: min(100% - 28px, 1160px); }
+      .hero-actions .btn, .cta .btn { width: 100%; }
+      .visual { min-height: 430px; }
+      .mosaic { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(5, 1fr); }
+      .tile { min-height: 120px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="logo" href="#top" aria-label="UCMS Dienstleistungen Startseite">
+        <span class="logo-mark">U</span>
+        <span>UCMS Dienstleistungen</span>
+      </a>
+      <nav class="nav-links" aria-label="Hauptnavigation">
+        <a href="#leistungen">Leistungen</a>
+        <a href="#prozess">Ablauf</a>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
+      <a class="btn btn-primary" href="mailto:info@ucms-dienstleistungen.com?subject=Kostenlose%20Erstberatung%20anfragen">Erstgespräch sichern</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow"><span class="pulse"></span> Sichtbarkeit, die Anfragen bringt</div>
+          <h1>Content, der <span class="gradient">verkauft.</span></h1>
+          <p>Wir verwandeln deine Online-Präsenz in einen klaren Akquise-Kanal: starke Bilder, prägnante Botschaften und eine Landingpage, die Besucher schnell zur Anfrage führt.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="mailto:info@ucms-dienstleistungen.com?subject=Ich%20will%20mehr%20Anfragen">Jetzt kostenlose Analyse anfragen →</a>
+            <a class="btn btn-secondary" href="#leistungen">Leistungen ansehen</a>
+          </div>
+          <div class="proof" aria-label="Vorteile">
+            <div class="proof-card"><strong>24h</strong><span>erste Rückmeldung</span></div>
+            <div class="proof-card"><strong>3 Schritte</strong><span>von Idee zu Launch</span></div>
+            <div class="proof-card"><strong>100%</strong><span>fokussiert auf Conversion</span></div>
+          </div>
+        </div>
+
+        <div class="visual" aria-label="Visuelle Collage für digitale Dienstleistungen">
+          <div class="mosaic">
+            <div class="tile t1"></div><div class="tile t2"></div><div class="tile t3"></div><div class="tile t4"></div><div class="tile t5"></div>
+            <div class="tile t6"></div><div class="tile t7"></div><div class="tile t8"></div><div class="tile t9"></div><div class="tile t10"></div>
+          </div>
+          <div class="floating-card">
+            <strong>Mehr Leads.</strong>
+            <p>Ein Auftritt, der sofort zeigt, warum Kunden dich wählen sollten.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="leistungen">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Alles, was dein Angebot schnell verständlich macht.</h2>
+          <p>Knackige Strategie, moderne Visuals und saubere Umsetzung — ohne unnötige Komplexität.</p>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <div class="icon">◎</div>
+            <h3>Positionierung</h3>
+            <p>Wir schärfen Nutzen, Zielgruppe und Botschaft, damit Besucher sofort verstehen, warum du die richtige Wahl bist.</p>
+          </article>
+          <article class="card">
+            <div class="icon">✦</div>
+            <h3>Content & Visuals</h3>
+            <p>Bildsprache, Texte und Struktur greifen ineinander und erzeugen Vertrauen, Tempo und Wiedererkennung.</p>
+          </article>
+          <article class="card">
+            <div class="icon">↗</div>
+            <h3>Conversion-Funnel</h3>
+            <p>Klare Calls-to-Action, starke Vertrauenselemente und kurze Wege machen aus Aufmerksamkeit konkrete Anfragen.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="prozess">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Launch ohne Reibung.</h2>
+          <p>Ein schlanker Ablauf, damit du schnell online überzeugst.</p>
+        </div>
+        <div class="steps">
+          <article class="step"><h3>Analyse</h3><p>Wir prüfen Angebot, Zielgruppe und aktuelle Website auf Conversion-Hebel.</p></article>
+          <article class="step"><h3>Konzept</h3><p>Du erhältst eine klare Seitenstruktur mit Headlines, Nutzenargumenten und CTA-Logik.</p></article>
+          <article class="step"><h3>Umsetzung</h3><p>Die Landingpage wird modern, mobiloptimiert und mit Fokus auf messbare Anfragen aufgebaut.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="kontakt">
+      <div class="wrap">
+        <div class="cta">
+          <div>
+            <h2>Bereit für mehr Anfragen?</h2>
+            <p>Schreib uns kurz, was du anbietest. Wir melden uns mit konkreten Ideen für deinen nächsten Wachstumsschritt.</p>
+          </div>
+          <a class="btn btn-primary" href="mailto:info@ucms-dienstleistungen.com?subject=Kostenlose%20Landingpage-Analyse">Kostenlose Analyse starten</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <span>© 2026 UCMS Dienstleistungen</span>
+      <span>Mehr Sichtbarkeit. Mehr Vertrauen. Mehr Anfragen.</span>
+    </div>
+  </footer>
+</body>
+</html>
