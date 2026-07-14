@@ -94,6 +94,7 @@
     .upload-preview { display: none; margin-top: 12px; border-radius: 16px; overflow: hidden; border: 1px solid var(--line); background: rgba(0,0,0,.2); }
     .upload-preview.is-visible { display: block; }
     .upload-preview img { display: block; width: 100%; max-height: 230px; object-fit: cover; }
+    .image-upload-meta { min-height: 1.2em; color: var(--brand-2); font-size: .84rem; font-weight: 800; margin: 10px 0 0; }
     .image-note { color: var(--muted); font-size: .82rem; margin-top: 8px; }
     .filters { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; justify-content: space-between; margin-bottom: 16px; }
     .filters .left { display: flex; gap: 10px; flex-wrap: wrap; }
@@ -211,6 +212,7 @@
             <input type="hidden" id="imageData" />
             <input type="hidden" id="imageName" />
             <div class="upload-preview" id="imagePreview" aria-live="polite"></div>
+            <p class="image-upload-meta" id="imageUploadMeta" aria-live="polite"></p>
             <div class="upload-row">
               <button class="btn" id="removeImageBtn" type="button">Bild entfernen</button>
             </div>
@@ -252,6 +254,7 @@
     const statusFilter = document.querySelector('#statusFilter');
     const imageUpload = document.querySelector('#imageUpload');
     const imagePreview = document.querySelector('#imagePreview');
+    const imageUploadMeta = document.querySelector('#imageUploadMeta');
 
     function save() {
       localStorage.setItem(storageKey, JSON.stringify(posts));
@@ -454,6 +457,32 @@
       ];
       save();
     });
+
+
+    function formatImageSize(bytes) {
+      if (!bytes) return '';
+      if (bytes < 1024 * 1024) return `${Math.round(bytes / 1024)} KB`;
+      return `${(bytes / 1024 / 1024).toFixed(1)} MB`;
+    }
+
+    function setImageUploadMeta(text) {
+      imageUploadMeta.textContent = text;
+    }
+
+    imageUpload.addEventListener('change', () => {
+      const file = imageUpload.files[0];
+      setImageUploadMeta(file ? `${file.name} · ${formatImageSize(file.size)}` : '');
+    });
+
+    board.addEventListener('click', (event) => {
+      const editId = event.target.dataset.edit;
+      if (!editId) return;
+      const post = posts.find((item) => item.id === editId);
+      setImageUploadMeta(post && post.imageName ? `${post.imageName} · gespeichertes Bild` : '');
+    });
+
+    document.querySelector('#removeImageBtn').addEventListener('click', () => setImageUploadMeta(''));
+    document.querySelector('#resetBtn').addEventListener('click', () => setImageUploadMeta(''));
 
     document.querySelector('#exportBtn').addEventListener('click', () => {
       const blob = new Blob([JSON.stringify(posts, null, 2)], { type: 'application/json' });
