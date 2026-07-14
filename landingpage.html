@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Moderne Landingpage für UCMS Dienstleistungen: Strategie, Umsetzung und Betreuung für digitale Sichtbarkeit." />
+  <title>UCMS Dienstleistungen | Digitale Lösungen für Wachstum</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --blue: #1E3A5F;
+      --blue-dark: #0b1727;
+      --blue-mid: #132b49;
+      --white: #FFFFFF;
+      --orange: #F59E0B;
+      --orange-soft: rgba(245, 158, 11, .16);
+      --text-soft: rgba(255, 255, 255, .76);
+      --text-muted: rgba(255, 255, 255, .58);
+      --line: rgba(255, 255, 255, .14);
+      --card: rgba(255, 255, 255, .07);
+      --card-strong: rgba(255, 255, 255, .11);
+      --shadow: 0 24px 80px rgba(0, 0, 0, .32);
+      --radius: 24px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--white);
+      background:
+        radial-gradient(circle at 12% 8%, rgba(245, 158, 11, .24), transparent 31rem),
+        radial-gradient(circle at 86% 12%, rgba(30, 58, 95, .9), transparent 34rem),
+        linear-gradient(145deg, var(--blue-dark) 0%, #07111f 46%, #020713 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .35;
+      background-image:
+        linear-gradient(rgba(255,255,255,.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.055) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: linear-gradient(to bottom, #000, transparent 78%);
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; cursor: pointer; }
+    .wrap { width: min(var(--max), calc(100% - 36px)); margin: 0 auto; }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid var(--line);
+      background: rgba(7, 17, 31, .72);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav-inner {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.05rem;
+      font-weight: 900;
+      letter-spacing: -.03em;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      color: #111827;
+      background: linear-gradient(135deg, var(--orange), #ffd18a);
+      box-shadow: 0 18px 42px rgba(245, 158, 11, .35);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      color: var(--text-soft);
+      font-weight: 750;
+      font-size: .95rem;
+    }
+
+    .nav-links a { transition: color .2s ease; }
+    .nav-links a:hover { color: var(--orange); }
+
+    .menu-toggle {
+      display: none;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--white);
+      background: rgba(255,255,255,.06);
+      padding: 10px 14px;
+      font-weight: 800;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 48px;
+      padding: 0 20px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      color: var(--white);
+      background: rgba(255,255,255,.07);
+      font-weight: 850;
+      transition: transform .2s ease, border-color .2s ease, background .2s ease;
+    }
+
+    .btn:hover { transform: translateY(-2px); border-color: rgba(255,255,255,.32); background: rgba(255,255,255,.1); }
+    .btn-primary { border: 0; color: #111827; background: linear-gradient(135deg, var(--orange), #ffd18a); box-shadow: 0 18px 44px rgba(245, 158, 11, .28); }
+
+    .hero {
+      position: relative;
+      padding: clamp(68px, 9vw, 130px) 0 70px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.04fr .96fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 8px 13px;
+      border: 1px solid rgba(245, 158, 11, .36);
+      border-radius: 999px;
+      color: #ffe4b7;
+      background: var(--orange-soft);
+      font-weight: 850;
+      font-size: .92rem;
+    }
+
+    .pulse {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--orange);
+      box-shadow: 0 0 0 7px rgba(245, 158, 11, .14);
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      margin-bottom: 22px;
+      font-size: clamp(2.8rem, 7vw, 6.4rem);
+      line-height: .9;
+      letter-spacing: -.08em;
+    }
+
+    .highlight { color: var(--orange); }
+    .lead { max-width: 670px; color: var(--text-soft); font-size: clamp(1.06rem, 2vw, 1.24rem); line-height: 1.72; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 30px; }
+
+    .hero-card {
+      position: relative;
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: calc(var(--radius) + 12px);
+      background: linear-gradient(145deg, rgba(30,58,95,.86), rgba(255,255,255,.06));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      right: -80px;
+      top: -80px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(245,158,11,.34), transparent 68%);
+    }
+
+    .metric-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; position: relative; z-index: 1; }
+    .metric, .glass-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.08);
+      padding: 20px;
+    }
+    .metric strong { display: block; font-size: clamp(1.8rem, 4vw, 3rem); letter-spacing: -.06em; }
+    .metric span { color: var(--text-muted); font-weight: 750; }
+    .glass-card { margin-top: 14px; position: relative; z-index: 1; }
+    .glass-card p { color: var(--text-soft); line-height: 1.65; margin-bottom: 0; }
+
+    section { padding: 74px 0; }
+    .section-head { max-width: 760px; margin-bottom: 34px; }
+    .section-head h2 { font-size: clamp(2rem, 4vw, 3.8rem); line-height: 1; letter-spacing: -.06em; margin-bottom: 14px; }
+    .section-head p { color: var(--text-soft); line-height: 1.7; font-size: 1.08rem; }
+
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .card {
+      min-height: 100%;
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--card);
+      transition: transform .22s ease, background .22s ease, border-color .22s ease;
+    }
+    .card:hover { transform: translateY(-5px); border-color: rgba(245,158,11,.44); background: var(--card-strong); }
+    .icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      margin-bottom: 18px;
+      color: var(--orange);
+      background: var(--orange-soft);
+      font-weight: 950;
+      font-size: 1.28rem;
+    }
+    .card h3 { margin-bottom: 10px; font-size: 1.25rem; }
+    .card p { color: var(--text-soft); line-height: 1.65; margin-bottom: 0; }
+
+    .benefits {
+      display: grid;
+      grid-template-columns: .86fr 1.14fr;
+      gap: 26px;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: calc(var(--radius) + 10px);
+      background: linear-gradient(135deg, rgba(30,58,95,.82), rgba(255,255,255,.06));
+      padding: clamp(24px, 5vw, 48px);
+      box-shadow: var(--shadow);
+    }
+    .benefit-list { display: grid; gap: 14px; }
+    .benefit-item { display: flex; gap: 14px; padding: 18px; border: 1px solid var(--line); border-radius: 20px; background: rgba(255,255,255,.07); }
+    .check { flex: 0 0 28px; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; color: #111827; background: var(--orange); font-weight: 950; }
+    .benefit-item strong { display: block; margin-bottom: 4px; }
+    .benefit-item span { color: var(--text-soft); line-height: 1.55; }
+
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; counter-reset: step; }
+    .step { position: relative; padding: 30px; border: 1px solid var(--line); border-radius: var(--radius); background: rgba(255,255,255,.07); }
+    .step::before {
+      counter-increment: step;
+      content: "0" counter(step);
+      display: inline-flex;
+      margin-bottom: 28px;
+      color: var(--orange);
+      font-size: 2.7rem;
+      font-weight: 950;
+      letter-spacing: -.08em;
+    }
+    .step p { color: var(--text-soft); line-height: 1.65; margin-bottom: 0; }
+
+    .cta {
+      text-align: center;
+      padding: clamp(36px, 7vw, 70px);
+      border: 1px solid rgba(245, 158, 11, .32);
+      border-radius: calc(var(--radius) + 14px);
+      background:
+        radial-gradient(circle at 50% 0%, rgba(245,158,11,.22), transparent 32rem),
+        linear-gradient(135deg, rgba(30,58,95,.92), rgba(255,255,255,.06));
+      box-shadow: var(--shadow);
+    }
+    .cta h2 { font-size: clamp(2.1rem, 5vw, 4.5rem); line-height: .98; letter-spacing: -.07em; margin-bottom: 18px; }
+    .cta p { max-width: 690px; margin: 0 auto 28px; color: var(--text-soft); line-height: 1.72; }
+
+    footer { padding: 30px 0 44px; color: var(--text-muted); }
+    .footer-inner { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; border-top: 1px solid var(--line); padding-top: 24px; }
+
+    @media (max-width: 860px) {
+      .menu-toggle { display: inline-flex; }
+      .nav-links {
+        position: absolute;
+        inset: 76px 18px auto;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 14px;
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        background: rgba(7,17,31,.96);
+        box-shadow: var(--shadow);
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 14px; border-radius: 14px; }
+      .nav-links a:hover { background: rgba(255,255,255,.07); }
+      .nav .btn-primary { display: none; }
+      .hero-grid, .benefits { grid-template-columns: 1fr; }
+      .cards, .steps { grid-template-columns: 1fr; }
+      .metric-grid { grid-template-columns: 1fr 1fr; }
+      section { padding: 56px 0; }
+    }
+
+    @media (max-width: 560px) {
+      .wrap { width: min(100% - 24px, var(--max)); }
+      .hero { padding-top: 52px; }
+      .hero-actions, .hero-actions .btn, .cta .btn { width: 100%; }
+      .metric-grid { grid-template-columns: 1fr; }
+      .card, .step, .hero-card { padding: 22px; }
+      .footer-inner { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav" aria-label="Hauptnavigation">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top" aria-label="UCMS Startseite">
+        <span class="brand-mark">U</span>
+        <span>UCMS Dienstleistungen</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="navLinks">Menü</button>
+      <nav class="nav-links" id="navLinks">
+        <a href="#leistungen">Leistungen</a>
+        <a href="#vorteile">Vorteile</a>
+        <a href="#ablauf">Ablauf</a>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
+      <a class="btn btn-primary" href="#kontakt">Projekt starten</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <span class="eyebrow"><span class="pulse"></span> Strategie, Umsetzung & Betreuung</span>
+          <h1>Digitale Lösungen für <span class="highlight">sichtbares Wachstum</span>.</h1>
+          <p class="lead">UCMS unterstützt Unternehmen mit modernen Webauftritten, klarer Kommunikation und effizienten digitalen Prozessen – von der ersten Idee bis zur laufenden Optimierung.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#kontakt">Kostenlos anfragen</a>
+            <a class="btn" href="#leistungen">Leistungen ansehen</a>
+          </div>
+        </div>
+        <aside class="hero-card" aria-label="UCMS Kennzahlen">
+          <div class="metric-grid">
+            <div class="metric"><strong>360°</strong><span>digitale Betreuung</span></div>
+            <div class="metric"><strong>3</strong><span>klare Projektphasen</span></div>
+            <div class="metric"><strong>24/7</strong><span>online präsent</span></div>
+            <div class="metric"><strong>100%</strong><span>responsive</span></div>
+          </div>
+          <div class="glass-card">
+            <p>Ein starker Markenauftritt, der Vertrauen schafft, Leads generiert und Ihre Dienstleistungen verständlich präsentiert.</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="leistungen">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Leistungen, die Ihr digitales Fundament stärken.</h2>
+          <p>Von der professionellen Landingpage bis zur strukturierten Content- und Prozesslösung: UCMS bündelt Beratung, Design und Umsetzung in einem fokussierten Servicepaket.</p>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <div class="icon">01</div>
+            <h3>Webdesign & Landingpages</h3>
+            <p>Moderne, schnelle und responsive Seiten, die Ihre Marke überzeugend präsentieren und Besucher gezielt zur Kontaktaufnahme führen.</p>
+          </article>
+          <article class="card">
+            <div class="icon">02</div>
+            <h3>Content & Sichtbarkeit</h3>
+            <p>Klare Botschaften, strukturierte Inhalte und überzeugende Nutzerführung für mehr Vertrauen und bessere digitale Auffindbarkeit.</p>
+          </article>
+          <article class="card">
+            <div class="icon">03</div>
+            <h3>Digitale Prozesse</h3>
+            <p>Pragmatische Tools, Automatisierungen und Workflows, die Abläufe vereinfachen und Zeit im Tagesgeschäft sparen.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="vorteile">
+      <div class="wrap benefits">
+        <div class="section-head">
+          <h2>Warum UCMS?</h2>
+          <p>Sie erhalten keine Standardlösung, sondern einen klaren, modernen und messbaren Auftritt, der zu Ihrem Angebot passt.</p>
+        </div>
+        <div class="benefit-list">
+          <div class="benefit-item"><span class="check">✓</span><div><strong>Klarer Fokus</strong><span>Jede Seite wird auf Zielgruppe, Angebot und Kontaktziel ausgerichtet.</span></div></div>
+          <div class="benefit-item"><span class="check">✓</span><div><strong>Modernes Design</strong><span>Dunkle Premium-Optik mit starken Kontrasten, Orange-Akzenten und hochwertiger Wirkung.</span></div></div>
+          <div class="benefit-item"><span class="check">✓</span><div><strong>Responsive Umsetzung</strong><span>Ihre Inhalte funktionieren sauber auf Desktop, Tablet und Smartphone.</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="ablauf">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>In 3 Schritten zur neuen digitalen Präsenz.</h2>
+          <p>Ein transparenter Ablauf sorgt dafür, dass Sie jederzeit wissen, was passiert und welche Entscheidung als Nächstes ansteht.</p>
+        </div>
+        <div class="steps">
+          <article class="step"><h3>Analyse & Zielbild</h3><p>Wir klären Angebot, Zielgruppe, Inhalte und Prioritäten für eine Landingpage, die wirklich passt.</p></article>
+          <article class="step"><h3>Design & Umsetzung</h3><p>Auf Basis der Strategie entsteht ein moderner Auftritt mit klarer Struktur, starken CTAs und sauberer Technik.</p></article>
+          <article class="step"><h3>Launch & Optimierung</h3><p>Nach dem Start werden Inhalte, Nutzerführung und Kontaktpunkte überprüft und bei Bedarf weiter verbessert.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="kontakt">
+      <div class="wrap">
+        <div class="cta">
+          <span class="eyebrow"><span class="pulse"></span> Bereit für den nächsten Schritt?</span>
+          <h2>Lassen Sie uns Ihre UCMS Landingpage planen.</h2>
+          <p>Starten Sie mit einer unverbindlichen Anfrage. Gemeinsam definieren wir den passenden digitalen Auftritt für Ihre Dienstleistungen.</p>
+          <a class="btn btn-primary" href="mailto:kontakt@ucms.example?subject=Anfrage%20UCMS%20Dienstleistungen">Kontakt aufnehmen</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <span>© <span id="year"></span> UCMS Dienstleistungen</span>
+      <span>Modernes Webdesign · Digitale Prozesse · Sichtbarkeit</span>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('#navLinks');
+    const year = document.querySelector('#year');
+
+    year.textContent = new Date().getFullYear();
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    navLinks.addEventListener('click', (event) => {
+      if (event.target.matches('a')) {
+        navLinks.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  </script>
+</body>
+</html>
